@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+@layer base {
+    :root {
+        /* Dark Theme (Default) */
+        --background-color: #0f172a;         
+        --text-color: #f8fafc;               
+        --primary-color: #1e3a8a;           
+        --secondary-color: #3b82f6;          
+        --accent-color: #7cb8fd;             
+        --card-bg: #1e293b;                  
+        --border-color: #334155;            
+        --logo-text: #e0f2fe;
+        --logo-shadow: rgba(59, 131, 246, 0.433);  
+        --logo-accent: #93c5fd;
+        --logo-accent2: #93c5fd;
+        --card-shadow: 0 4px 12px rgb(255, 255, 255, 0.2);
+        --text-secondary: #94a3b8; 
+        --card-hover-bg: #334155; 
+    }
+
+        /* Light Theme (Triggered by checkbox) */
+    :root:has(#light-mode:checked) {
+        --background-color: #f8fafc;         
+        --text-color: #0f172a;               
+        --primary-color: #3b82f6;           
+        --secondary-color: #1e3a8a;         
+        --accent-color: #9eb6d3;             
+        --card-bg: #e2e8f0;                  
+        --border-color: #cbd5e1;
+        --logo-text: #1e3a8a;              
+        --logo-shadow: rgba(3, 20, 68, 0.464);   
+        --logo-accent: #e0f2fe;              
+        --logo-accent2: #1e3a8a;
+        --card-shadow: 0 4px 12px rgb(0, 0, 0, 0.2);
+        --text-secondary: #64748b; 
+        --card-hover-bg: #d2d8e0; 
+    }
+    
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        transition: all 0.3s ease
+    }
+    
+}
+
+
+
+@layer components {
+
+    /* ------Navigation------ */
+    .nav-link {
+      @apply block py-2 px-4 hover:bg-blue-600 md:hover:bg-blue-500 transition-all;
+      @apply block px-4 py-2 transition;
+    }
+    
+    .nav-link:hover {
+        @apply bg-blue-600;
+    }
+
+    /* -----FORM FIELDS------*/
+    .input-field {
+        @apply w-full p-2 rounded-md bg-[var(--secondary-color)] text-[var(--text-color)];
+    }
+
+    
+    /* -------Theme Toggle--------- */
+    .theme-toggle {
+        @apply flex items-center gap-3;
+    }
+    
+    /* Hide default radio buttons */
+    .theme-toggle-checkbox {
+        display: none;
+    }
+
+    /* Theme Toggle Buttons */
+    .theme-toggle-btn {
+        @apply text-xl cursor-pointer px-3 py-1 rounded transition;
+    }
+
+    /* Dark Mode Selected */
+    #dark-mode:checked ~ label[for="dark-mode"] {
+        @apply bg-gray-800 text-white;
+    }
+    
+    /* Light Mode Selected */
+    #light-mode:checked ~ label[for="light-mode"] {
+        @apply bg-yellow-400 text-black;
+
+    }
+
+    /* /* -----home------ */
+
+    /* ------cards and heading------ */
+    .big-card {
+        @apply p-6 bg-[var(--card-bg)] rounded-xl shadow-lg border border-[var(--accent-color)];
+    }
+    
+    .card-heading {
+        @apply text-xl font-bold mb-4 pb-2 border-b border-[var(--accent-color)];
+    }
+    
+    .sub-heading {
+        @apply text-sm font-semibold text-[var(--accent-color)] mb-2;
+    }
+
+
+
+    /* -------Skills------- */
+    
+    .skill-tag {
+        @apply px-3 py-1 bg-[var(--primary-color)] text-sm rounded-full 
+               border border-[var(--accent-color)] hover:bg-[var(--accent-color)] 
+               transition-colors cursor-default;
+    }
+    
+    .progress-bar {
+        @apply relative z-0 w-full bg-gray-700 h-2 rounded-full mt-1;
+    }
+    
+    .progress-fill {
+        @apply absolute z-0 left-0 top-0 h-2 bg-[var(--accent-color)] rounded-full;
+    }
+    
+    .mini-card {
+        @apply flex items-center gap-3 p-3 bg-[var(--card-bg)] rounded-md;
+        box-shadow: var(--card-shadow); 
+        transition: box-shadow 0.3s ease;
+    }
+    
+
+    /* ------Certification------- */
+    
+    .cert-section {
+        @apply col-span-3 bg-[var(--card-bg)] text-[var(--text-color)] p-8;
+      }
+      
+    .section-heading {
+        @apply text-3xl font-bold mb-8 border-b-2 border-[var(--accent-color)] pb-2;
+    }
+    
+    .cert-grid {
+        @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+    }
+    
+    .cert-card {
+        @apply bg-[var(--background-color)] rounded-md p-4 shadow-md;
+        @apply transition-all transform hover:-translate-y-2 hover:transition-all duration-300 ease-in;
+        @apply hover:bg-[var(--card-hover-bg)] hover:shadow-[var(--card-shadow)];
+    }
+    
+    
+    
+    .cert-image {
+        @apply w-full h-auto object-contain rounded-md;
+    }
+    
+    .cert-title {
+        @apply text-xl font-semibold mt-3;
+    }
+    
+    .cert-description {
+        @apply text-sm text-[var(--text-secondary)] mt-1;
+    }
+    
+    .cert-button {
+        @apply inline-block mt-4 px-4 py-2 text-white rounded-md;
+        @apply bg-[var(--secondary-color)] hover:bg-[var(--accent-color)];
+        @apply transition-colors duration-300;
+    }
+    
+
+    /* --------projects--------- */
+    .project-section {
+        @apply col-span-3 bg-[var(--background-color)] text-[var(--text-color)] p-8
+    }
+    
+    .project-grid {
+        @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4
+    }
+    
+    .project-card {
+        @apply bg-[var(--card-bg)] rounded-md p-4 shadow-md transform transition-all;
+        @apply hover:bg-[var(--card-hover-bg)];
+    }
+
+    .project-subheading {
+        @apply text-xl font-semibold mt-3;
+    }
+
+    .project-img {
+        @apply w-full h-40 object-cover rounded-md px-2;
+    }
+    
+    .project-card:hover {
+        transform: translatey(-8px);
+        box-shadow: var(--card-shadow); 
+        transition: all 0.3s ease;
+    }
+
+    /* ----------footer------- */
+
+    .footer-wrapper {
+        @apply mt-2 flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6;
+      }
+
+    .footer-social {
+        @apply text-blue-500 hover:text-[var(--accent-color)] text-sm;
+    }
+
+    .footer-link {
+        @apply flex items-center space-x-1 text-blue-500 hover:text-[var(--accent-color)] text-sm;
+    }
+    
+    .span-style {
+        @apply text-[var(--logo-accent2)] transition-colors duration-300;
+    }
+    
+    #social-media {
+        margin: 10px;
+    }
+    
+    .hover-icon {
+        display: inline-block;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      
+    .hover-icon:hover {
+        transform: translateY(-4px);
+        color: var(--accent-color);
+    }
+    
+    
+    .social-items{
+        @apply text-3xl text-[var(--text-color)] hover:text-[var(--accent-color)] inline-block transition-transform duration-300 hover:-translate-y-1
+     }
+      
+}
+
